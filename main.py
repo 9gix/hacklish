@@ -35,6 +35,7 @@ env.filters['linebreaksbr'] = linebreaksbr
 def reduce_word(text):
     """Using Reduce Functional Style"""
     dictionary = csv2dict()
+    dictionary.update(csv2dict('data2.csv'))
     return reduce(lambda t, kv: t.replace(*kv), dictionary.iteritems(), text)
 
 def replace_redundancy(text):
@@ -54,7 +55,7 @@ class MainHandler(webapp2.RequestHandler):
         text = self.request.get('text')
         shorten = reduce_word(text)
         word_reduce_count = len(text.split()) - len(shorten.split())
-        self.response.write(template.render(shorten=shorten,
+        self.response.write(template.render(text=text, shorten=shorten,
             word_reduce_count=word_reduce_count))
 
 
