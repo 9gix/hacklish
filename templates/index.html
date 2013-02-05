@@ -1,0 +1,13 @@
+<h1>Pleonasm</h1>
+<hr />
+
+<form method='POST'>
+  <label for="text">Wordy Essay</label>
+  <textarea name="text" id="text" rows="20" cols="50"></textarea>
+  <input type='submit' value='Shorten'>
+</form>
+
+{% if shorten %}
+<legend>Compressed Essay ({{ word_reduce_count }} word(s) have been removed)</legend>
+<textarea rows="20" cols="50">{{ shorten }}</textarea>
+{% endif %}
