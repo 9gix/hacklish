@@ -34,9 +34,11 @@ env.filters['linebreaksbr'] = linebreaksbr
 
 def reduce_word(text):
     """Using Reduce Functional Style"""
-    dictionary = csv2dict()
+    dictionary = {}
+    dictionary.update(csv2dict('data.csv'))
     dictionary.update(csv2dict('data2.csv'))
-    return reduce(lambda t, kv: t.replace(*kv), dictionary.iteritems(), text)
+    shorten = reduce(lambda t, kv: t.replace(*kv), dictionary.iteritems(), text)
+    return " ".join(shorten.split())
 
 def replace_redundancy(text):
     dictionary = csv2dict()
