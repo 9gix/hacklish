@@ -38,7 +38,7 @@ def reduce_word(text):
     dictionary.update(csv2dict('data.csv'))
     dictionary.update(csv2dict('data2.csv'))
     shorten = reduce(lambda t, kv: t.replace(*kv), dictionary.iteritems(), text)
-    return " ".join(shorten.split())
+    return re.sub("[ \t\r\f\v]+", ' ', shorten)
 
 def replace_redundancy(text):
     dictionary = csv2dict()
